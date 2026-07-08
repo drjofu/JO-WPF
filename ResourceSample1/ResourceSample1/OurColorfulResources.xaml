@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="ColorA">#FFED0B0B</Color>
+  <Color x:Key="ColorB">#FF67EB19</Color>
+  <SolidColorBrush x:Key="Brush1" Color="{DynamicResource ColorA}"/>
+  <SolidColorBrush x:Key="Brush2" Color="{DynamicResource ColorB}"/>
+  <LinearGradientBrush x:Key="Brush3" EndPoint="0.5,1" StartPoint="0.5,0">
+    <GradientStop Color="{DynamicResource ColorA}"/>
+    <GradientStop Color="{DynamicResource ColorB}" Offset="1"/>
+  </LinearGradientBrush>
+
+
+</ResourceDictionary>
