@@ -20,5 +20,15 @@ namespace WpfApp1
     {
       InitializeComponent();
     }
+
+    private void ButtonClick(object sender, RoutedEventArgs e)
+    {
+      MessageBox.Show("Button clicked!");
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
   }
 }
