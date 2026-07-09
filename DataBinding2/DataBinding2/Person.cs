@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using System.Linq.Expressions;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace DataBinding2
@@ -40,7 +40,7 @@ namespace DataBinding2
   public class Company
   {
     public string? Name { get; set; } = "Hinz & Kunz";
-    public List<Person> Employees { get; set; } = [
+    public ObservableCollection<Person> Employees { get; set; } = [
       new Person(){Name="Donald Duck", Address="Ducksburg", Age=30},
       new Person(){Name="Tick Duck", Address="Berlin", Age=15},
       new Person(){Name="Mike Smith", Address="Hamburg", Age=70},

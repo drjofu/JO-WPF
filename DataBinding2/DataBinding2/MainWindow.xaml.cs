@@ -10,7 +10,7 @@ namespace DataBinding2
     public MainWindow()
     {
       InitializeComponent();
-      this.DataContext=new Company();
+      this.DataContext = new Company();
     }
 
     private void GettingOlder(object sender, RoutedEventArgs e)
@@ -20,6 +20,12 @@ namespace DataBinding2
       {
         person.Age++;
       }
+    }
+
+    private void NewEmployee(object sender, RoutedEventArgs e)
+    {
+      var people = ((Company)DataContext).Employees;
+      people.Add(new Person() { Name = "New Employee", Address = "New Address", Age = 30 });
     }
   }
 }

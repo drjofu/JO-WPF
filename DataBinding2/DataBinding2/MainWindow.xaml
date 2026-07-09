@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:DataBinding2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+  <!--<Window.DataContext>
+    <local:Company/>
+  </Window.DataContext>-->
   <Window.Resources>
     <DataTemplate x:Key="PersonTemplate">
       <Grid >
@@ -34,10 +37,11 @@
   <StackPanel Grid.IsSharedSizeScope="True">
     <TextBlock Text="{Binding Path=Employees[0].Address[0]}" FontSize="25" Margin="5"/>
     <ListBox Name="LB" ItemsSource="{Binding Employees}" Margin="5" 
-             ItemTemplate="{StaticResource PersonTemplate}"
+             ItemTemplate="{StaticResource PersonTemplate}" MaxHeight="300"
              />
     <Label Content="{Binding ElementName=LB, Path=SelectedItem}" ContentTemplate="{StaticResource PersonTemplate}"  Margin="5"/>
     <Label Content="{Binding ElementName=LB, Path=SelectedItem}"  Margin="5"/>
     <Button Content="Getting older..." Margin="5" Click="GettingOlder"/>
+    <Button Content="New employee..." Margin="5" Click="NewEmployee"/>
   </StackPanel>
 </Window>
