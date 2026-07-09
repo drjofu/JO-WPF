@@ -58,7 +58,7 @@ namespace RssFeedBeispiel
 
     private void RefreshClick(object sender, RoutedEventArgs e)
     {
-      var reader = XmlReader.Create("https://www.microsoft.com/de-de/techwiese/feeds/rss/netframework.xml");
+      var reader = XmlReader.Create("http://www.spiegel.de/schlagzeilen/tops/index.rss");
       var feed = SyndicationFeed.Load(reader);
       this.DataContext = feed;
       
