@@ -6,14 +6,38 @@
         xmlns:local="clr-namespace:DataBinding2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-  <StackPanel>
+  <Window.Resources>
+    <DataTemplate x:Key="PersonTemplate">
+      <Grid >
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" SharedSizeGroup="A"/>
+          <ColumnDefinition Width="Auto" SharedSizeGroup="B"/>
+          <ColumnDefinition Width="Auto" SharedSizeGroup="C"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{Binding Path=Name}" />
+        <TextBlock Name="TBAddress" Text="{Binding Path=Address}" Margin="10,0" Grid.Column="1" />
+        <TextBlock Name="TBAge" Text="{Binding Path=Age}" Grid.Column="2"/>
+      </Grid>
+      <DataTemplate.Triggers>
+        <DataTrigger Binding="{Binding Path=IsExperienced}" Value="True">
+          <Setter Property="Background" Value="LightGreen" TargetName="TBAge" />
+          <Setter Property="FontWeight" Value="Bold" TargetName="TBAge"/>
+        </DataTrigger>
+      </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:Person}" >
+      <TextBlock Text="{Binding Path=Name}" />
+    </DataTemplate>
+    
+  </Window.Resources>
+  <StackPanel Grid.IsSharedSizeScope="True">
     <TextBlock Text="{Binding Path=Employees[0].Address[0]}" FontSize="25" Margin="5"/>
-    <ListBox ItemsSource="{Binding Employees}" Margin="5">
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <TextBlock Text="{Binding Path=Name}" />
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
+    <ListBox Name="LB" ItemsSource="{Binding Employees}" Margin="5" 
+             ItemTemplate="{StaticResource PersonTemplate}"
+             />
+    <Label Content="{Binding ElementName=LB, Path=SelectedItem}" ContentTemplate="{StaticResource PersonTemplate}"  Margin="5"/>
+    <Label Content="{Binding ElementName=LB, Path=SelectedItem}"  Margin="5"/>
+    <Button Content="Getting older..." Margin="5" Click="GettingOlder"/>
   </StackPanel>
 </Window>

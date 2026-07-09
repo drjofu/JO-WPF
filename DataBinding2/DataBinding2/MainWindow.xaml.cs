@@ -12,5 +12,14 @@ namespace DataBinding2
       InitializeComponent();
       this.DataContext=new Company();
     }
+
+    private void GettingOlder(object sender, RoutedEventArgs e)
+    {
+      var people = ((Company)DataContext).Employees;
+      foreach (var person in people)
+      {
+        person.Age++;
+      }
+    }
   }
 }
