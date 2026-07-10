@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MyControlsExample/MyControlsExample.csproj" />
+  <Project Path="Traffic/Traffic.csproj" />
+</Solution>
