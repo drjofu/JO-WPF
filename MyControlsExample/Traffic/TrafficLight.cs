@@ -42,14 +42,16 @@ namespace Traffic
   /// </summary>
   public class TrafficLight : Control
   {
+    private Shape? lightRed;
+    private Shape? lightGreen;
+
     static TrafficLight()
     {
       DefaultStyleKeyProperty.OverrideMetadata(typeof(TrafficLight), new FrameworkPropertyMetadata(typeof(TrafficLight)));
     }
 
     //propdp
-
-
+    //(propa)
     public bool IsGreen
     {
       get { return (bool)GetValue(IsGreenProperty); }
@@ -58,8 +60,40 @@ namespace Traffic
 
     // Using a DependencyProperty as the backing store for IsGreen.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty IsGreenProperty =
-        DependencyProperty.Register(nameof(IsGreen), typeof(bool), typeof(TrafficLight), new FrameworkPropertyMetadata(false));
+        DependencyProperty.Register(nameof(IsGreen), typeof(bool), typeof(TrafficLight), new FrameworkPropertyMetadata(false, IsGreenChanged));
 
+    private static void IsGreenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      var trafficLight = d as TrafficLight;
+      trafficLight!.Switch();
+    }
 
+    private void Switch()
+    {
+      if (lightGreen is null)
+      {
+        return;
+      }
+
+      if (IsGreen)
+      {
+        lightGreen!.Opacity = 1;
+        lightRed!.Opacity = 0.2;
+      }
+      else
+      {
+        lightRed!.Opacity = 1;
+        lightGreen!.Opacity = 0.2;
+      }
+    }
+
+    public override void OnApplyTemplate()
+    {
+      base.OnApplyTemplate();
+      lightRed = GetTemplateChild("PART_RedLight") as Shape;
+      lightGreen = GetTemplateChild("PART_GreenLight") as Shape;
+
+      Switch();
+    }
   }
 }

@@ -11,7 +11,7 @@
         Title="MainWindow" Height="450" Width="800">
   <Grid>
 
-    <Traffic:TrafficLight HorizontalAlignment="Left" Margin="116,59,0,0" VerticalAlignment="Top" Background="#FF322F2F"/>
+    <Traffic:TrafficLight HorizontalAlignment="Left" Margin="116,59,0,0" VerticalAlignment="Top" Background="#FF322F2F" IsGreen="True"/>
 
   </Grid>
 </Window>
