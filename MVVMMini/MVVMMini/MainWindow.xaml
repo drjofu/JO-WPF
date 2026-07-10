@@ -10,19 +10,33 @@
     <local:MainViewModel/>
   </Window.DataContext>
   <Grid>
-    <TextBox HorizontalAlignment="Left" Margin="133,138,0,0" TextWrapping="Wrap" Text="{Binding Number1}" VerticalAlignment="Top" Width="120"/>
-    <TextBox HorizontalAlignment="Left" Margin="371,138,0,0" TextWrapping="Wrap" Text="{Binding Number2}" VerticalAlignment="Top" Width="120"/>
+    <TextBox HorizontalAlignment="Left" Margin="133,138,0,0" TextWrapping="Wrap" 
+             Text="{Binding Number1, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TabIndex="4"/>
+    <TextBox HorizontalAlignment="Left" Margin="371,138,0,0" TextWrapping="Wrap" 
+             Text="{Binding Number2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TabIndex="2"/>
     <TextBlock HorizontalAlignment="Left" Margin="268,184,0,0" TextWrapping="Wrap" Text="{Binding Result}" VerticalAlignment="Top"/>
     <Button Content="+"  HorizontalAlignment="Left" Margin="161,234,0,0" VerticalAlignment="Top" Width="21" Command="{Binding PlusCommand}"/>
     <Button Content="-" HorizontalAlignment="Left" Margin="360,234,0,0" VerticalAlignment="Top" Width="22" Command="{Binding MinusCommand}"/>
-    <Slider HorizontalAlignment="Left" Margin="133,107,0,0" VerticalAlignment="Top" Width="120" Maximum="10000" Value="{Binding Number1}"/>
-    <Slider HorizontalAlignment="Left" Margin="371,107,0,0" VerticalAlignment="Top" Width="120" Maximum="10000" Value="{Binding Number2}"/>
+    <Slider HorizontalAlignment="Left" Margin="133,107,0,0" VerticalAlignment="Top" Width="120" Maximum="10000" Value="{Binding Number1}" TabIndex="1"/>
+    <Slider HorizontalAlignment="Left" Margin="371,107,0,0" VerticalAlignment="Top" Width="120" Maximum="10000" Value="{Binding Number2}" TabIndex="3"/>
     <Menu VerticalAlignment="Top">
       <MenuItem Header="Calculation">
         <MenuItem Header="+" ToolTip="Addition" Command="{Binding PlusCommand}"/>
         <MenuItem Header="-" ToolTip="Subtraction" Command="{Binding MinusCommand}"/>
       </MenuItem>
     </Menu>
+    <ItemsControl  Margin="496,208,85,79" ItemsSource="{Binding Commands}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Button Command="{Binding}" Content="{Binding DisplayText}" ToolTip="{Binding ToolTipText}" Margin="3" />
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <UniformGrid/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
 
   </Grid>
 </Window>

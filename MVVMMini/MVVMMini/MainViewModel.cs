@@ -53,10 +53,13 @@ namespace MVVMMini
     public ActionCommand PlusCommand { get; set; }
     public ActionCommand MinusCommand { get; set; }
 
+    public List<ActionCommand> Commands { get; set; }
+
     public MainViewModel()
     {
-      PlusCommand = new ActionCommand(Plus);
-      MinusCommand = new ActionCommand(Minus);
+      PlusCommand = new ActionCommand(Plus) { DisplayText="+", ToolTipText="Addition"};
+      MinusCommand = new ActionCommand(Minus) { DisplayText="-", ToolTipText="Subtraction"};
+      Commands = [PlusCommand, MinusCommand, new ActionCommand(()=>Result=Number1 * Number2) { DisplayText="*", ToolTipText="Plutimikation"}];
     }
 
     private void Plus()
