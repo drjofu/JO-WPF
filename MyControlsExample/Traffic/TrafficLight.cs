@@ -46,5 +46,20 @@ namespace Traffic
     {
       DefaultStyleKeyProperty.OverrideMetadata(typeof(TrafficLight), new FrameworkPropertyMetadata(typeof(TrafficLight)));
     }
+
+    //propdp
+
+
+    public bool IsGreen
+    {
+      get { return (bool)GetValue(IsGreenProperty); }
+      set { SetValue(IsGreenProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for IsGreen.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty IsGreenProperty =
+        DependencyProperty.Register(nameof(IsGreen), typeof(bool), typeof(TrafficLight), new FrameworkPropertyMetadata(false));
+
+
   }
 }
