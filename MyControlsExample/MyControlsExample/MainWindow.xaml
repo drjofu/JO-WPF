@@ -9,9 +9,27 @@
   x:Class="MyControlsExample.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="TrafficLightStyle1" TargetType="{x:Type Traffic:TrafficLight}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Traffic:TrafficLight}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <StackPanel Margin="10">
+                                <Rectangle x:Name="PART_RedLight" Fill="Red" Height="50" Margin="5" Width="50"/>
+                <Rectangle x:Name="PART_GreenLight" Fill="LightGreen" Height="50" Margin="5" Width="50"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
   <Grid>
 
-    <Traffic:TrafficLight HorizontalAlignment="Left" Margin="116,59,0,0" VerticalAlignment="Top" Background="#FF322F2F" IsGreen="True"/>
+    <Traffic:TrafficLight HorizontalAlignment="Left" Margin="116,59,0,0" VerticalAlignment="Top" Background="#FF322F2F" IsGreen="{Binding ElementName=CB, Path=IsChecked}"/>
+    <CheckBox Name="CB" Content="CheckBox" HorizontalAlignment="Left" Margin="260,129,0,0" VerticalAlignment="Top"/>
+    <Traffic:TrafficLight Style="{DynamicResource TrafficLightStyle1}" HorizontalAlignment="Left" Margin="417,59,0,0" VerticalAlignment="Top" Background="#FF322F2F" IsGreen="{Binding IsChecked, ElementName=CB}"/>
 
   </Grid>
 </Window>

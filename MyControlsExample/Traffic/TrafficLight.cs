@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -40,6 +41,10 @@ namespace Traffic
   ///     <MyNamespace:CustomControl1/>
   ///
   /// </summary>
+  /// 
+
+  [TemplatePart(Name = "PART_RedLight", Type = typeof(Shape))]
+  [TemplatePart(Name = "PART_GreenLight", Type = typeof(Shape))]
   public class TrafficLight : Control
   {
     private Shape? lightRed;
@@ -52,6 +57,12 @@ namespace Traffic
 
     //propdp
     //(propa)
+
+    /// <summary>
+    /// Red or green
+    /// </summary>
+    [Category("Traffic")]
+    [Description("Indicates whether the traffic light is green or red.")]
     public bool IsGreen
     {
       get { return (bool)GetValue(IsGreenProperty); }
@@ -60,7 +71,10 @@ namespace Traffic
 
     // Using a DependencyProperty as the backing store for IsGreen.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty IsGreenProperty =
-        DependencyProperty.Register(nameof(IsGreen), typeof(bool), typeof(TrafficLight), new FrameworkPropertyMetadata(false, IsGreenChanged));
+        DependencyProperty.Register(nameof(IsGreen), typeof(bool), typeof(TrafficLight), new FrameworkPropertyMetadata(
+          false,
+          FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
+          IsGreenChanged));
 
     private static void IsGreenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -86,6 +100,15 @@ namespace Traffic
         lightGreen!.Opacity = 0.2;
       }
     }
+
+    //protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+    //{
+    //  base.OnPropertyChanged(e);
+    //  if(e.Property == TemplateProperty)
+    //  {
+
+    //  }
+    //}
 
     public override void OnApplyTemplate()
     {
