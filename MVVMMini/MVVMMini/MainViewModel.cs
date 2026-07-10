@@ -10,7 +10,13 @@ namespace MVVMMini
     public int Number1
     {
       get { return number1; }
-      set { number1 = value; }
+      set
+      {
+        if(number1 == value) return;
+
+        number1 = value;
+        OnPropertyChanged();
+      }
     }
 
     private int number2;
@@ -18,7 +24,11 @@ namespace MVVMMini
     public int Number2
     {
       get { return number2; }
-      set { number2 = value; }
+      set
+      {
+        number2 = value;
+        OnPropertyChanged();
+      }
     }
 
     private int result;
@@ -53,11 +63,13 @@ namespace MVVMMini
     {
       // here the model would be called to do the calculation, but for this example we will just do it here
       Result = Number1 + Number2;
+      PlusCommand.IsEnabled = false;
     }
 
     private void Minus()
     {
       Result = Number1 - Number2;
+      PlusCommand.IsEnabled = true;
     }
 
 
