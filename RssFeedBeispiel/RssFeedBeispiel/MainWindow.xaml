@@ -28,7 +28,7 @@
            Grid.RowSpan="2"/>
     <TextBlock Text="{Binding LastUpdatedTime, StringFormat=g}" Grid.Row="2" 
                Grid.Column="2" Margin="5"/>
-    
+
     <ListBox SelectedIndex="0" Name="LBItems" ItemsSource="{Binding Items}" Grid.Row="3" Margin="5">
       <ListBox.ItemTemplate>
         <DataTemplate>
