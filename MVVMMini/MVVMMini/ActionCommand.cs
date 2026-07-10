@@ -11,7 +11,7 @@ namespace MVVMMini
       this.action = action;
     }
 
-    private bool isEnabled;
+    private bool isEnabled = true;
 
     public bool IsEnabled
     {
